@@ -35,6 +35,7 @@ jobs:
         id: get_zowe_versions
         run: |
           current_version=$(jq -r '.zoweVersion' packages/cli/package.json)
+          current_version="${current_version#V}"  # Strip the 'V' prefix
           echo "current_version=$current_version" >> $GITHUB_ENV
           new_version="${{ github.event.inputs.major_version }}.${{ github.event.inputs.minor_version }}.${{ github.event.inputs.patch_version }}"
           echo "new_version=$new_version" >> $GITHUB_ENV
