@@ -5,7 +5,7 @@ on:
     inputs:
       major_version:
         description: 'Major version (default is 3)'
-        required: false
+        required: true
         default: '3'
       minor_version:
         description: 'Minor version'
@@ -38,7 +38,7 @@ jobs:
           echo "current_version=$current_version" >> $GITHUB_ENV
           new_version="${{ github.event.inputs.major_version }}.${{ github.event.inputs.minor_version }}.${{ github.event.inputs.patch_version }}"
           echo "new_version=$new_version" >> $GITHUB_ENV
-          echo "PACKAGE_JSON_PATH=zowe-cli/packages/cli/package.json" >> $GITHUB_ENV
+          echo "PACKAGE_JSON_PATH=packages/cli/package.json" >> $GITHUB_ENV
 
           if [[ "$new_version" < "$current_version" ]]; then
             echo "Error: New version $new_version is not greater than current version $current_version."
