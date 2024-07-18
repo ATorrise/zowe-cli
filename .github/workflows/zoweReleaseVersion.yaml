@@ -57,16 +57,16 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
-          git config --global user.name ${{ secrets.ZOWE_ROBOT_USER }}
-          git config --global user.email ${{ secrets.ZOWE_ROBOT_EMAIL }}
-          git add ${{ env.PACKAGE_JSON_PATH }}
+          git config --global user.name "${{ secrets.ZOWE_ROBOT_USER }}"
+          git config --global user.email "${{ secrets.ZOWE_ROBOT_EMAIL }}"
+          git add "${{ env.PACKAGE_JSON_PATH }}"
           git commit -sm "Update version to ${{ env.new_version }}"
           git push origin "$branch_name"
 
       - name: Create Pull Request
         run: |
           pr_title="Update CLI version to ${{ env.new_version }}"
-          gh pr create -t "$pr_title" -b ${{ env.defaultBranch }} --head "${{ env.branch_name }}" -B "$branch_name" --body "Updating Zowe CLI version to ${{ env.new_version }}" --reviewer ATorrise
+          gh pr create -t "$pr_title" -b "${{ env.defaultBranch }}" --head "${{ env.branch_name }}" -B "$branch_name" --body "Updating Zowe CLI version to ${{ env.new_version }}" --reviewer ATorrise
           echo "Pull Request created successfully"
         env:
           GH_TOKEN: ${{ secrets.ZOWE_ROBOT_TOKEN }}
