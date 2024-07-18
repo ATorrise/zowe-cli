@@ -34,7 +34,7 @@ jobs:
       - name: Set Variables and Ensure Increase in Semver
         id: get_zowe_versions
         run: |
-          current_version=$(jq -r '.zoweVersion' ${{ env.PACKAGE_JSON_PATH }})
+          current_version=$(jq -r '.zoweVersion' packages/cli/package.json)
           echo "current_version=$current_version" >> $GITHUB_ENV
           new_version="${{ github.event.inputs.major_version }}.${{ github.event.inputs.minor_version }}.${{ github.event.inputs.patch_version }}"
           echo "new_version=$new_version" >> $GITHUB_ENV
@@ -53,12 +53,12 @@ jobs:
 
       - name: Update Zowe Version in cli/package.json
         run: |
-          jq ".version = \"$new_version\""  ${{ env.PACKAGE_JSON_PATH }} > package.tmp.json && mv package.tmp.json ${{ env.PACKAGE_JSON_PATH }}
+          jq ".zoweVersion = \"$new_version\"" ${{ env.PACKAGE_JSON_PATH }} > package.tmp.json && mv package.tmp.json ${{ env.PACKAGE_JSON_PATH }}
 
       - name: Commit and Push Changes
         run: |
-          git config --global user.name ${{ secrets.ZOWE_ROBOT_USER }}
-          git config --global user.email ${{ secrets.ZOWE_ROBOT_EMAIL }}
+          git config --global user.name "${{ secrets.ZOWE_ROBOT_USER }}"
+          git config --global user.email "${{ secrets.ZOWE_ROBOT_EMAIL }}"
           git add "${{ env.PACKAGE_JSON_PATH }}"
           git commit -sm "Update version to ${{ env.new_version }}"
           git push origin "$branch_name"
@@ -66,7 +66,6 @@ jobs:
       - name: Create Pull Request
         run: |
           pr_title="Update CLI version to ${{ env.new_version }}"
-          gh pr create -t "$pr_title" -b "${{ env.defaultBranch }}" --head "${{ env.branch_name }}" -B "$branch_name" --body "Updating Zowe CLI version to ${{ env.new_version }}" --reviewer ATorrise
-          echo "Pull Request created successfully"
+          gh pr create -t "$pr_title" -b "${{ env.defaultBranch }}" --head "$branch_name" --body "Updating Zowe CLI version to ${{ env.new_version }}" --reviewer ATorrise
         env:
           GH_TOKEN: ${{ secrets.ZOWE_ROBOT_TOKEN }}
