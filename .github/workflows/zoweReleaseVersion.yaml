@@ -34,7 +34,7 @@ jobs:
       - name: Set Variables and Ensure Increase in Semver
         id: get_zowe_versions
         run: |
-          current_version=$(jq -r '.version' ${{ env.PACKAGE_JSON_PATH }})
+          current_version=$(jq -r '.zoweVersion' ${{ env.PACKAGE_JSON_PATH }})
           echo "current_version=$current_version" >> $GITHUB_ENV
           new_version="${{ github.event.inputs.major_version }}.${{ github.event.inputs.minor_version }}.${{ github.event.inputs.patch_version }}"
           echo "new_version=$new_version" >> $GITHUB_ENV
