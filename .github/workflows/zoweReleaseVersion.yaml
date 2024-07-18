@@ -22,7 +22,7 @@ jobs:
       - name: Checkout zowe-cli-sample-scripts repo
         uses: actions/checkout@v4
         with:
-          repository: 'zowe/zowe-cli-sample-scripts'
+          repository: 'ATorrise/zowe-cli'
           ref: ${{ env.defaultBranch }}
           token: ${{ secrets.ZOWE_ROBOT_TOKEN }}
 
