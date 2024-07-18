@@ -61,7 +61,9 @@ jobs:
           git config --global user.email ${{ secrets.ZOWE_ROBOT_EMAIL }}
           git add ${{ env.PACKAGE_JSON_PATH }}
           git commit -sm "Update version to ${{ env.new_version }}"
-          git pull origin "$branch_name" --rebase
+          if git ls-remote --exit-code --heads origin "$branch_name"; then
+            git pull origin "$branch_name" --rebase
+          fi
           git push origin "$branch_name"
 
       - name: Create Pull Request
