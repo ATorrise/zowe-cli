@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout zowe-cli-sample-scripts repo
+      - name: Checkout CLI Repo
         uses: actions/checkout@v4
         with:
           repository: 'ATorrise/zowe-cli'
@@ -47,7 +47,7 @@ jobs:
 
       - name: Create Branch
         run: |
-          branch_name="update-version-v${{ env.new_version }}"
+          branch_name="updateToV${{env.new_version}}"
           echo "branch_name=$branch_name" >> $GITHUB_ENV
           git checkout -b "$branch_name"
 
