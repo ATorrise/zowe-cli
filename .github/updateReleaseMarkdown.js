@@ -13,13 +13,17 @@ fs.readFile(mdFilePath, 'utf8', (err, data) => {
     return;
   }
 
-  // Find the table and insert the new row
+  // Find the table and insert the new row after the second row
   const lines = data.split('\n');
+  let tableLineCount = 0;
   for (let i = 0; i < lines.length; i++) {
     if (lines[i].startsWith('|') && lines[i].endsWith('|')) {
-      // Insert the new row after the header row
-      lines.splice(i + 1, 0, newRow);
-      break;
+      tableLineCount++;
+      if (tableLineCount === 2) {
+        // Insert the new row after the second row
+        lines.splice(i + 1, 0, newRow);
+        break;
+      }
     }
   }
 
