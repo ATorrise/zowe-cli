@@ -43,6 +43,7 @@ jobs:
           if [[ "$new_version" < "$current_version" ]]; then
             echo "Error: New version $new_version is not greater than current version $current_version."
             exit 1
+          fi
 
       - name: Create Branch
         run: |
