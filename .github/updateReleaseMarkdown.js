@@ -2,9 +2,10 @@ const fs = require('fs');
 const path = require('path');
 
 // Define the new row to be added
+// test data
 const newRow = '|  v3.1.0  | 2025-03      | **Active** | [Link](#)     | [Link](#) |\n';
 
-const mdFilePath = path.join(__dirname, RELEASE_HISTORY.md);
+const mdFilePath = path.join(__dirname, '../RELEASE_HISTORY.md');
 
 fs.readFile(mdFilePath, 'utf8', (err, data) => {
   if (err) {
