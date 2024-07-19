@@ -57,7 +57,7 @@ jobs:
           jq ".zoweVersion = \"V$new_version\"" ${{ env.PACKAGE_JSON_PATH }} > package.tmp.json && mv package.tmp.json ${{ env.PACKAGE_JSON_PATH }}
 
     - name: Run update script
-      run: node .github/updateReleaseMarkdown.js
+      run: node ".github/updateReleaseMarkdown.js"
 
       - name: Commit and Push Changes
         run: |
