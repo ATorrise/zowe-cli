@@ -57,6 +57,8 @@ jobs:
 
       - name: Run update script
         run: node ".github/updateReleaseMarkdown.js"
+        env:
+          NEW_VERSION: ${{ env.new_version }}
 
       - name: Commit and Push Changes
         run: |
