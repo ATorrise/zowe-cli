@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 // Build the new row to be added
-const newRow = `|  v${process.env.NEW_VERSION}  | ${new Date().toISOString().split('T')[0]} | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v${newVersion.replace(/\./g, '_')}) |`;
+const newVersion = process.env.NEW_VERSION;
+const newRow = `|  v${newVersion}  | ${new Date().toISOString().split('T')[0]} | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v${newVersion.replace(/\./g, '_')}) |`;
 
 const mdFilePath = path.join(__dirname, '../RELEASE_HISTORY.md');
 
