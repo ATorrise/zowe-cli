@@ -2,8 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Define the new row to be added
-// test data
-const newRow = '|  v3.1.0  | 2025-03      | **Active** | [Link](#)     | [Link](#) |\n';
+const newRow = '|  TEST  | 2025-03      | **Active** | [Link](#)     | [Link](#) |';
 
 const mdFilePath = path.join(__dirname, '../RELEASE_HISTORY.md');
 
