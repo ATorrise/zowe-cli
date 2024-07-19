@@ -40,11 +40,9 @@ jobs:
           new_version="${{ github.event.inputs.major_version }}.${{ github.event.inputs.minor_version }}.${{ github.event.inputs.patch_version }}"
           echo "new_version=$new_version" >> $GITHUB_ENV
           echo "PACKAGE_JSON_PATH=packages/cli/package.json" >> $GITHUB_ENV
-
           if [[ "$new_version" < "$current_version" ]]; then
             echo "Error: New version $new_version is not greater than current version $current_version."
             exit 1
-          fi
 
       - name: Create Branch
         run: |
@@ -56,14 +54,14 @@ jobs:
         run: |
           jq ".zoweVersion = \"V$new_version\"" ${{ env.PACKAGE_JSON_PATH }} > package.tmp.json && mv package.tmp.json ${{ env.PACKAGE_JSON_PATH }}
 
-    - name: Run update script
-      run: node ".github/updateReleaseMarkdown.js"
+      - name: Run update script
+        run: node ".github/updateReleaseMarkdown.js"
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name "${{ secrets.ZOWE_ROBOT_USER }}"
           git config --global user.email "${{ secrets.ZOWE_ROBOT_EMAIL }}"
-          git add "${{ env.PACKAGE_JSON_PATH }}"
+          git add "${{ env.PACKAGE_JSON_PATH }} README.md"
           git commit -sm "Update version to ${{ env.new_version }}"
           git push origin "$branch_name"
 
