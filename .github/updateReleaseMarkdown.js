@@ -11,12 +11,12 @@ function fetchCliTeam(url) {
     https.get(url, (res) => {
       let data = '';
 
-      // A chunk of data has been received
+      // A chunk of data has been received.
       res.on('data', (chunk) => {
         data += chunk;
       });
 
-      // The whole response has been received
+      // The whole response has been received. Print out the result.
       res.on('end', () => {
         // Extract only the CLI contributors section
         const cliSection = data.split('## Zowe Web UI Squad')[0];
@@ -64,12 +64,11 @@ async function appendCliTeam() {
   }
 }
 
-// 2. Functions for Updating the Markdown Table
+// Build the new row to be added
+const newVersion = process.env.NEW_VERSION;
+const newRow = `|  v${newVersion}  | ${new Date().toISOString().split('T')[0]} | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v${newVersion.replace(/\./g, '_')}) |`;
 
-// Function to build and return the new row to be added
-function buildNewRow(newVersion) {
-  return `|  v${newVersion}  | ${new Date().toISOString().split('T')[0]} | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v${newVersion.replace(/\./g, '_')}) |`;
-}
+const mdFilePath = path.join(__dirname, '../RELEASE_HISTORY.md');
 
 // Function to read, update, and write to the markdown file
 function updateMarkdownTable(newRow) {
@@ -105,7 +104,7 @@ function updateMarkdownTable(newRow) {
 
 // Main function to update the markdown table
 function updateReleaseHistory() {
-  const newRow = buildNewRow(newVersion);
+  const newRow = `|  v${newVersion}  | ${new Date().toISOString().split('T')[0]} | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v${newVersion.replace(/\./g, '_')}) |`;
   updateMarkdownTable(newRow);
 }
 
