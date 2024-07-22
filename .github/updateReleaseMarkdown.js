@@ -11,12 +11,12 @@ function fetchCliTeam(url) {
     https.get(url, (res) => {
       let data = '';
 
-      // A chunk of data has been received.
+      // A chunk of data has been received
       res.on('data', (chunk) => {
         data += chunk;
       });
 
-      // The whole response has been received. Print out the result.
+      // The whole response has been received
       res.on('end', () => {
         // Extract only the CLI contributors section
         const cliSection = data.split('## Zowe Web UI Squad')[0];
@@ -40,10 +40,10 @@ function updateCliTeamInMd(cliTeam) {
     }
 
     // Remove the existing CLI team section
-    const updatedData = data.replace(/## Zowe CLI Squad[\s\S]*?(?=## Zowe|$)/, '');
+    const updatedData = data.replace(/## Zowe CLI Squad[\s\S]*?(?=##|$)/, '');
 
     // Append the new CLI team section
-    const newContent = `${updatedData.trim()}\n\n${cliTeam}`;
+    const newContent = `${updatedData.trim()}\n\n## Zowe CLI Squad\n\n${cliTeam}`;
     fs.writeFile(mdPath, newContent, 'utf8', (err) => {
       if (err) {
         console.error('Error writing the file:', err);
@@ -104,7 +104,7 @@ function updateMarkdownTable(newRow) {
 
 // Main function to update the markdown table
 function updateReleaseHistory() {
-  const newRow = `|  v${newVersion}  | ${new Date().toISOString().split('T')[0]} | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v${newVersion.replace(/\./g, '_')}) |`;
+  const newRow = buildNewRow(newVersion);
   updateMarkdownTable(newRow);
 }
 
