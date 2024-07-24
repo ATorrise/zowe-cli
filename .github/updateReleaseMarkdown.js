@@ -28,7 +28,7 @@ function fetchCliTeam(url) {
       // The whole response has been received
       res.on('end', () => {
         // Extract only the CLI contributors section
-        const cliSectionMatch = data.match(/## Zowe CLI Squad[\s\S]*?(?=##|$)/);
+        const cliSectionMatch = data.match(/### Zowe CLI Squad[\s\S]*?(?=###|$)/);
         const cliSection = cliSectionMatch ? cliSectionMatch[0] : '';
         resolve(cliSection);
       });
@@ -47,8 +47,8 @@ function updateCliTeamInMd(cliTeam) {
       return;
     }
 
-    // Remove the existing CLI team section
-    const updatedData = data.replace(/## Zowe CLI Squad[\s\S]*?(?=\n##|$)/, '');
+    // Remove everything after "## Zowe CLI Squad"
+    const updatedData = data.replace(/## Zowe CLI Squad[\s\S]*/, '## Zowe CLI Squad');
 
     // Append the new CLI team section
     const newContent = `${updatedData.trim()}\n\n${cliTeam.trim()}\n`;
