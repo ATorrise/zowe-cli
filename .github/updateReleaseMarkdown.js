@@ -102,12 +102,6 @@ function updateMarkdownTable(newRow) {
   });
 }
 
-// Main function to update the markdown table
-function updateReleaseHistory() {
-  const newRow = buildNewRow(newVersion);
-  updateMarkdownTable(newRow);
-}
-
 // Execute the two main functions
 (async () => {
   await appendCliTeam();
