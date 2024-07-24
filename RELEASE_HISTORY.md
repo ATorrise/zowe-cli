@@ -64,10 +64,8 @@ The following [components of the release](https://github.com/zowe/community/blob
 
 ## Zowe CLI Squad
 
-- [@gejohnston](https://github.com/gejohnston) - Gene Johnston
-- [@zFernand0](https://github.com/zFernand0) - Fernando Rijo Cedeno
-- [@t1m0thyj](https://github.com/t1m0thyj) - Timothy Johnson
-- [@awharn](https://github.com/awharn) - Andrew W. Harn
-- [@ATorrise](https://github.com/ATorrise) - Amber Torrise
-- [@traeok](https://github.com/traeok) - Trae Yelovich
-- [@jace-roell](https://github.com/jace-roell) - Jace Roell
+| Name | GitHub ID | Email | Roles |
+|-|-|-|-|
+| Adam Wolfe | @adam-wolfe | adam.wolfe@broadcom.com | Lead, TSC Rep, Security Squad Rep |
+| Amanda D'Errico | @AmandaDErrico | amanda.derrico@ibm.com | Developer |
+| Amber Torrise | @ATorrise | amber.torrise@broadcom.com | Developer |
