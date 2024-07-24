@@ -2,8 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-// URL of the raw markdown file to be appended to RELEASE_HISTORY.md
-const url = 'https://raw.githubusercontent.com/zowe/community/master/COMMITTERS.md';
+const url = 'https://raw.githubusercontent.com/zowe/community/master/COMMITTERS.md'; // URL of the raw markdown file to be appended to RELEASE_HISTORY.md
+const newVersion = process.env.NEW_VERSION;
+const newRow = `|  v${newVersion}  | ${new Date().toISOString().split('T')[0]} | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v${newVersion.replace(/\./g, '_')}) |`;
+const mdFilePath = path.join(__dirname, '../RELEASE_HISTORY.md');
 
 // Function to fetch CLI team from a URL
 function fetchCliTeam(url) {
@@ -54,7 +56,7 @@ function updateCliTeamInMd(cliTeam) {
   });
 }
 
-// Main function to fetch CLI team and update RELEASE_HISTORY
+// MAIN function to fetch CLI team and update RELEASE_HISTORY
 async function appendCliTeam() {
   try {
     const cliTeam = await fetchCliTeam(url);
@@ -64,14 +66,8 @@ async function appendCliTeam() {
   }
 }
 
-// Build the new row to be added
-const newVersion = process.env.NEW_VERSION;
-const newRow = `|  v${newVersion}  | ${new Date().toISOString().split('T')[0]} | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v${newVersion.replace(/\./g, '_')}) |`;
-
-const mdFilePath = path.join(__dirname, '../RELEASE_HISTORY.md');
-
-// Function to read, update, and write to the markdown file
-function updateMarkdownTable(newRow) {
+// MAIN function to read, update, and write to the markdown file
+function updateReleaseHistory(newRow) {
   fs.readFile(mdFilePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading the file:', err);
@@ -105,5 +101,5 @@ function updateMarkdownTable(newRow) {
 // Execute the two main functions
 (async () => {
   await appendCliTeam();
-  updateReleaseHistory();
+  updateReleaseHistory(newRow);
 })();
