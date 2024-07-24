@@ -48,7 +48,7 @@ function updateCliTeamInMd(cliTeam) {
     }
 
     // Remove the existing CLI team section
-    const updatedData = data.replace(/## Zowe CLI Squad[\s\S]*?(?=##|$)/, '');
+    const updatedData = data.replace(/## Zowe CLI Squad[\s\S]*?(?=\n##|$)/, '');
 
     // Append the new CLI team section
     const newContent = `${updatedData.trim()}\n\n${cliTeam.trim()}\n`;
@@ -62,7 +62,7 @@ function updateCliTeamInMd(cliTeam) {
   });
 }
 
-// Main function to fetch CLI team and update file
+// Main function to fetch CLI team and update RELEASE_HISTORY
 async function appendCliTeam() {
   try {
     const cliTeam = await fetchCliTeam(url);
@@ -72,7 +72,7 @@ async function appendCliTeam() {
   }
 }
 
-// Main function to read, update, and write to file
+// Function to read, update, and write to the markdown file
 function updateReleaseHistory(newRow) {
   fs.readFile(mdFilePath, 'utf8', (err, data) => {
     if (err) {
