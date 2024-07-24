@@ -67,5 +67,4 @@ The following [components of the release](https://github.com/zowe/community/blob
 | Name | GitHub ID | Email | Roles |
 |-|-|-|-|
 | Adam Wolfe | @adam-wolfe | adam.wolfe@broadcom.com | Lead, TSC Rep, Security Squad Rep |
-| Amanda D'Errico | @AmandaDErrico | amanda.derrico@ibm.com | Developer |
 | Amber Torrise | @ATorrise | amber.torrise@broadcom.com | Developer |
