@@ -2,9 +2,16 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-const url = 'https://raw.githubusercontent.com/zowe/community/master/COMMITTERS.md'; // URL of the raw markdown file to be appended to RELEASE_HISTORY.md
+// URL of the raw markdown file to be appended to RELEASE_HISTORY.md
+const url = 'https://raw.githubusercontent.com/zowe/community/master/COMMITTERS.md';
+
+// Environment variable for the new version
 const newVersion = process.env.NEW_VERSION;
+
+// New row to be added to the version table
 const newRow = `|  v${newVersion}  | ${new Date().toISOString().split('T')[0]} | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v${newVersion.replace(/\./g, '_')}) |`;
+
+// Path to the markdown file
 const mdFilePath = path.join(__dirname, '../RELEASE_HISTORY.md');
 
 // Function to fetch CLI team from a URL
@@ -32,10 +39,8 @@ function fetchCliTeam(url) {
 
 // Function to remove existing CLI team section and append new one
 function updateCliTeamInMd(cliTeam) {
-  const mdPath = path.join(__dirname, 'RELEASE_HISTORY.md');
-
   // Read the current content of the markdown file
-  fs.readFile(mdPath, 'utf8', (err, data) => {
+  fs.readFile(mdFilePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading the file:', err);
       return;
@@ -46,7 +51,7 @@ function updateCliTeamInMd(cliTeam) {
 
     // Append the new CLI team section
     const newContent = `${updatedData.trim()}\n\n## Zowe CLI Squad\n\n${cliTeam}`;
-    fs.writeFile(mdPath, newContent, 'utf8', (err) => {
+    fs.writeFile(mdFilePath, newContent, 'utf8', (err) => {
       if (err) {
         console.error('Error writing the file:', err);
         return;
@@ -56,7 +61,7 @@ function updateCliTeamInMd(cliTeam) {
   });
 }
 
-// MAIN function to fetch CLI team and update RELEASE_HISTORY
+// Main function to fetch CLI team and update RELEASE_HISTORY
 async function appendCliTeam() {
   try {
     const cliTeam = await fetchCliTeam(url);
@@ -66,7 +71,7 @@ async function appendCliTeam() {
   }
 }
 
-// MAIN function to read, update, and write to the markdown file
+// Function to read, update, and write to the markdown file
 function updateReleaseHistory(newRow) {
   fs.readFile(mdFilePath, 'utf8', (err, data) => {
     if (err) {
