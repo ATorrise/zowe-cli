@@ -7,6 +7,7 @@ Zowe follows a regular release schedule with major versions released every two y
 ### Zowe v3.x LTS Releases
 |  Version | Release Date |  Status    | Release Notes |
 |:--------:|:------------:|:----------:|:-------------:|
+|  v3.0.8  | 2024-07-24 | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v3_0_8) |
 |  v3.0.0  | 2024-09      | **Active** | [Link](#)     |
 
 ### Major Release Timeline
@@ -71,3 +72,13 @@ The following [components of the release](https://github.com/zowe/community/blob
 - [@ATorrise](https://github.com/ATorrise) - Amber Torrise
 - [@traeok](https://github.com/traeok) - Trae Yelovich
 - [@jace-roell](https://github.com/jace-roell) - Jace Roell
+rijocedeno@broadcom.com | Developer |
+| Jessica Tonda | @JTonda | jessica.tonda@broadcom.com | Scrum Master |
+| Kevin Loesch | @KevinLoesch1 | kevin.loesch@broadcom.com | Developer |
+| Timothy Johnson | @t1m0thyj | timothy.johnson@broadcom.com | Developer |
+| Trae Yelovich | @traeok | trae.yelovich@broadcom.com | Developer |
+
+See the full lists below:
+- https://github.com/orgs/zowe/teams/zowe-cli-administrators
+- https://github.com/orgs/zowe/teams/zowe-cli-committers
+- https://github.com/orgs/zowe/teams/zowe-cli-contributors
