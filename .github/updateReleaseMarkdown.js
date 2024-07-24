@@ -28,7 +28,7 @@ function fetchCliTeam(url) {
       // The whole response has been received
       res.on('end', () => {
         // Extract only the CLI contributors section
-        const cliSectionMatch = data.match(/## Zowe CLI Squad[\s\S]*?(?=##|$)/);
+        const cliSectionMatch = data.match(/### Zowe CLI Squad[\s\S]*?(?=\n##|$)/);
         const cliSection = cliSectionMatch ? cliSectionMatch[0] : '';
         resolve(cliSection);
       });
@@ -48,7 +48,7 @@ function updateCliTeamInMd(cliTeam) {
     }
 
     // Remove the existing CLI team section
-    const updatedData = data.replace(/## Zowe CLI Squad[\s\S]*?(?=\n##|$)/, '');
+    const updatedData = data.replace(/### Zowe CLI Squad[\s\S]*?(?=\n###|$)/, '');
 
     // Append the new CLI team section
     const newContent = `${updatedData.trim()}\n\n${cliTeam.trim()}\n`;
@@ -62,7 +62,7 @@ function updateCliTeamInMd(cliTeam) {
   });
 }
 
-// Main function to fetch CLI team and update RELEASE_HISTORY
+// Function to fetch CLI team and update RELEASE_HISTORY
 async function appendCliTeam() {
   try {
     const cliTeam = await fetchCliTeam(url);
