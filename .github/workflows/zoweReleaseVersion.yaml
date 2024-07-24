@@ -55,7 +55,7 @@ jobs:
         run: |
           jq ".zoweVersion = \"V$new_version\"" ${{ env.PACKAGE_JSON_PATH }} > package.tmp.json && mv package.tmp.json ${{ env.PACKAGE_JSON_PATH }}
 
-      - name: Run update script
+      - name: Update Zowe Version and Squad in RELEASE_HISTORY.md
         run: node ".github/updateReleaseMarkdown.js"
         env:
           NEW_VERSION: ${{ env.new_version }}
