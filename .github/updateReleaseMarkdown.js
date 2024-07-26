@@ -46,11 +46,9 @@ function updateCliTeamInMd(cliTeam) {
     }
 
     // Remove everything after "### Zowe CLI Squad"
-    const updatedData = data.replace(/### Zowe CLI Squad[\s\S]*/, '### Zowe CLI Squad');
+    const updatedData = data.replace(/### Zowe CLI Squad[\s\S]*?(?=###|$)/, '### Zowe CLI Squad\n\n' + cliTeam.trim());
 
-    // Append the new CLI team section
-    const newContent = `${updatedData.trim()}\n\n${cliTeam.trim()}\n`;
-    fs.writeFile(mdFilePath, newContent, 'utf8', (err) => {
+    fs.writeFile(mdFilePath, updatedData, 'utf8', (err) => {
       if (err) {
         console.error('Error writing the file:', err);
         return;
