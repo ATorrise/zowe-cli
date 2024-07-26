@@ -26,7 +26,7 @@ function fetchCliTeam(url) {
       // The whole response has been received
       res.on('end', () => {
         // Extract only the CLI contributors section
-        const cliSectionMatch = data.match(/### Zowe CLI Squad[\s\S]*?(?=###|$)/);
+        const cliSectionMatch = data.match(/### Zowe CLI Squad\n\n\| Name \| GitHub ID \| Email \| Roles \|[\s\S]*?\n\n/);
         const cliSection = cliSectionMatch ? cliSectionMatch[0] : '';
         resolve(cliSection);
       });
