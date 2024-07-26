@@ -77,11 +77,8 @@ function updateReleaseHistory(newRow) {
       return;
     }
 
-    // Escape periods in the names by replacing '.' with '\.'
-    const escapedData = data.replace(/\./g, '\\.');
-
     // Find the table and insert the new row after the second row
-    const lines = escapedData.split('\n');
+    const lines = data.split('\n');
     let tableLineCount = 0;
     for (let i = 0; i < lines.length; i++) {
       if (lines[i].startsWith('|') && lines[i].endsWith('|')) {
@@ -94,10 +91,7 @@ function updateReleaseHistory(newRow) {
       }
     }
 
-    // Unescape the periods after processing
-    const finalData = lines.join('\n').replace(/\\\./g, '.');
-
-    fs.writeFile(mdFilePath, finalData, 'utf8', (err) => {
+    fs.writeFile(mdFilePath, lines.join('\n'), 'utf8', (err) => {
       if (err) {
         console.error('Error writing the file:', err);
         return;
