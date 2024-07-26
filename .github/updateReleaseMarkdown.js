@@ -7,8 +7,7 @@ const url = 'https://raw.githubusercontent.com/zowe/community/master/COMMITTERS.
 
 // Build the new row to be added
 const newVersion = process.env.NEW_VERSION;
-const formattedDate = new Date().toISOString().slice(0, 7); // Formats date to YYYY-MM
-const newRow = `|  v${newVersion}  | ${formattedDate} | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v${newVersion.replace(/\./g, '_')}) |`;
+const newRow = `|  v${newVersion}  | ${new Date().toISOString().slice(0, 7)} | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v${newVersion.replace(/\./g, '_')}) |`;
 
 const mdFilePath = path.join(__dirname, '../RELEASE_HISTORY.md');
 
@@ -26,7 +25,7 @@ function fetchCliTeam(url) {
       // The whole response has been received
       res.on('end', () => {
         // Extract only the CLI contributors section
-        const cliSectionMatch = data.match(/### Zowe CLI Squad\n\n\| Name \| GitHub ID \| Email \| Roles \|[\s\S]*?\n\n/);
+        const cliSectionMatch = data.match(/### Zowe CLI Squad[\s\S]*?(?=###|$)/);
         const cliSection = cliSectionMatch ? cliSectionMatch[0] : '';
         resolve(cliSection);
       });
@@ -45,10 +44,12 @@ function updateCliTeamInMd(cliTeam) {
       return;
     }
 
-    // Remove everything after "### Zowe CLI Squad"
-    const updatedData = data.replace(/### Zowe CLI Squad[\s\S]*?(?=###|$)/, '### Zowe CLI Squad\n\n' + cliTeam.trim());
+    // Remove everything after "## Zowe CLI Squad"
+    const updatedData = data.replace(/## Zowe CLI Squad[\s\S]*/, '## Zowe CLI Squad');
 
-    fs.writeFile(mdFilePath, updatedData, 'utf8', (err) => {
+    // Append the new CLI team section
+    const newContent = `${updatedData.trim()}\n\n${cliTeam.trim()}\n`;
+    fs.writeFile(mdFilePath, newContent, 'utf8', (err) => {
       if (err) {
         console.error('Error writing the file:', err);
         return;
