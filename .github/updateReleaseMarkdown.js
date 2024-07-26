@@ -7,7 +7,8 @@ const url = 'https://raw.githubusercontent.com/zowe/community/master/COMMITTERS.
 
 // Build the new row to be added
 const newVersion = process.env.NEW_VERSION;
-const newRow = `|  v${newVersion}  | ${new Date().toISOString().split('T')[0]} | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v${newVersion.replace(/\./g, '_')}) |`;
+const formattedDate = new Date().toISOString().slice(0, 7); // Formats date to YYYY-MM
+const newRow = `|  v${newVersion}  | ${formattedDate} | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v${newVersion.replace(/\./g, '_')}) |`;
 
 const mdFilePath = path.join(__dirname, '../RELEASE_HISTORY.md');
 
