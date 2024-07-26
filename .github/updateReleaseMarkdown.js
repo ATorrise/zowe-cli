@@ -70,40 +70,42 @@ async function appendCliTeam() {
 }
 
 // Read, Update and Write to Markdown File
-fs.readFile(mdFilePath, 'utf8', (err, data) => {
-  if (err) {
-    console.error('Error reading the file:', err);
-    return;
-  }
-
-  // Escape periods in the names by replacing '.' with '\.'
-  const escapedData = data.replace(/\./g, '\\.');
-
-  // Find the table and insert the new row after the second row
-  const lines = escapedData.split('\n');
-  let tableLineCount = 0;
-  for (let i = 0; i < lines.length; i++) {
-    if (lines[i].startsWith('|') && lines[i].endsWith('|')) {
-      tableLineCount++;
-      if (tableLineCount === 2) {
-        // Insert the new row after the second row
-        lines.splice(i + 1, 0, newRow);
-        break;
-      }
-    }
-  }
-
-  // Unescape the periods after processing
-  const finalData = lines.join('\n').replace(/\\\./g, '.');
-
-  fs.writeFile(mdFilePath, finalData, 'utf8', (err) => {
+function updateReleaseHistory(newRow) {
+  fs.readFile(mdFilePath, 'utf8', (err, data) => {
     if (err) {
-      console.error('Error writing the file:', err);
+      console.error('Error reading the file:', err);
       return;
     }
-    console.log('Markdown file updated successfully.');
+
+    // Escape periods in the names by replacing '.' with '\.'
+    const escapedData = data.replace(/\./g, '\\.');
+
+    // Find the table and insert the new row after the second row
+    const lines = escapedData.split('\n');
+    let tableLineCount = 0;
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].startsWith('|') && lines[i].endsWith('|')) {
+        tableLineCount++;
+        if (tableLineCount === 2) {
+          // Insert the new row after the second row
+          lines.splice(i + 1, 0, newRow);
+          break;
+        }
+      }
+    }
+
+    // Unescape the periods after processing
+    const finalData = lines.join('\n').replace(/\\\./g, '.');
+
+    fs.writeFile(mdFilePath, finalData, 'utf8', (err) => {
+      if (err) {
+        console.error('Error writing the file:', err);
+        return;
+      }
+      console.log('Markdown file updated successfully.');
+    });
   });
-});
+}
 
 // Execute the two main functions
 (async () => {
