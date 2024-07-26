@@ -75,4 +75,5 @@ The following [components of the release](https://github.com/zowe/community/blob
 | Jace Roell | @jace-roell | jace.roell@broadcom.com | Developer |
 | Jessica Tonda | @JTonda | jessica.tonda@broadcom.com | Scrum Master |
 | Timothy Johnson | @t1m0thyj | timothy.johnson@broadcom.com | Developer |
+| Trae Yelovich | @traeok | trae.yelovich@broadcom.com | Developer |j | timothy.johnson@broadcom.com | Developer |
 | Trae Yelovich | @traeok | trae.yelovich@broadcom.com | Developer |
