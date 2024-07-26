@@ -7,6 +7,7 @@ Zowe follows a regular release schedule with major versions released every two y
 ### Zowe v3.x LTS Releases
 |  Version | Release Date |  Status    | Release Notes |
 |:--------:|:------------:|:----------:|:-------------:|
+|  v3.0.10  | 2024-07-26 | **Active** | [Release Notes](https://docs.zowe.org/stable/whats-new/release-notes/v3_0_10) |
 |  v3.0.0  | 2024-09      | **Active** | [Link](#)     |
 
 ### Major Release Timeline
@@ -67,4 +68,16 @@ The following [components of the release](https://github.com/zowe/community/blob
 | Name | GitHub ID | Email | Roles |
 |-|-|-|-|
 | Adam Wolfe | @adam-wolfe | adam.wolfe@broadcom.com | Lead, TSC Rep, Security Squad Rep |
-| Amber Torrise | @ATorrise | amber.torrise@broadcom.com | Developer |
+| Amber Torrise | @ATorrise | amber.torrise@broadcom.com | Developer |on | ana.ceron@broadcom.com | Tech Writer |
+| Andrew Harn | @awharn | andrew.harn@broadcom.com | Developer |
+| Eugene Johnston | @gejohnston | eugene.johnston@broadcom.com | Developer |
+| Fernando Rijo Cedeno | @zFernand0 | fernando.rijocedeno@broadcom.com | Developer |
+| Jace Roell | @jace-roell | jace.roell@broadcom.com | Developer |
+| Jessica Tonda | @JTonda | jessica.tonda@broadcom.com | Scrum Master |
+| Timothy Johnson | @t1m0thyj | timothy.johnson@broadcom.com | Developer |
+| Trae Yelovich | @traeok | trae.yelovich@broadcom.com | Developer |
+
+See the full lists below:
+- https://github.com/orgs/zowe/teams/zowe-cli-administrators
+- https://github.com/orgs/zowe/teams/zowe-cli-committers
+- https://github.com/orgs/zowe/teams/zowe-cli-contributors
