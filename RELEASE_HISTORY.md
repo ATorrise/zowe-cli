@@ -7,7 +7,7 @@ Zowe follows a regular release schedule with major versions released every two y
 ### Zowe v3.x LTS Releases
 |  Version | Release Date |  Status    | Release Notes |
 |:--------:|:------------:|:----------:|:-------------:|
-|  v3.0.0  | 2024-09      | **Under Development** |     |
+|  v3.0.0-prerelease  | 2024-08      | **Under Development** |     |
 
 ### Major Release Timeline
 
@@ -63,6 +63,7 @@ The following [components of the release](https://github.com/zowe/community/blob
 
 
 ## Zowe CLI Squad
-
-| Name | GitHub ID | Email | Roles |
-|-|-|-|-|
+- https://github.com/zowe/community/blob/master/COMMITTERS.md#zowe-cli-squad
+- https://github.com/orgs/zowe/teams/zowe-cli-administrators
+- https://github.com/orgs/zowe/teams/zowe-cli-committers
+- https://github.com/orgs/zowe/teams/zowe-cli-contributors
