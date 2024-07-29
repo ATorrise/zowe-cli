@@ -66,4 +66,5 @@ The following [components of the release](https://github.com/zowe/community/blob
 - https://github.com/zowe/community/blob/master/COMMITTERS.md#zowe-cli-squad
 - https://github.com/orgs/zowe/teams/zowe-cli-administrators
 - https://github.com/orgs/zowe/teams/zowe-cli-committers
+- https://github.com/orgs/zowe/teams/zowe-cli-contributors- https://github.com/orgs/zowe/teams/zowe-cli-committers
 - https://github.com/orgs/zowe/teams/zowe-cli-contributors
