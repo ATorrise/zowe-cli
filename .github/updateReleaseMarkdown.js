@@ -61,5 +61,5 @@ function updatePackageJsonVersion(newVersion) {
 }
 
 // Execute the functions
-updatePackageJsonVersion(newVersion);
+updatePackageJsonVersion(process.env.NEW_VERSION);
 updateReleaseHistory(newRow);
